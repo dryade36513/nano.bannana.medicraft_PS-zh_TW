@@ -1,0 +1,134 @@
+{
+	"id": "nano.bannana.medicraft",
+	"name": "🐄哞哞ㄉGemini Banana生成式填充插件🐄",
+	"version": "1.0.4",
+	"main": "index.html",
+	"manifestVersion": 6,
+	"host": {
+		"app": "PS",
+		"minVersion": "24.0.0"
+	},
+	"entrypoints": [
+		{
+			"type": "panel",
+			"id": "nano.bannana.medicraft.panel",
+			"label": {
+				"default": "🐄哞哞ㄉGemini Banana生成式填充插件🐄"
+			},
+			"minimumSize": {
+				"width": 230,
+				"height": 200
+			},
+			"maximumSize": {
+				"width": 2000,
+				"height": 2000
+			},
+			"preferredDockedSize": {
+				"width": 230,
+				"height": 300
+			},
+			"preferredFloatingSize": {
+				"width": 450,
+				"height": 400
+			},
+			"icons": [
+				{
+					"width": 23,
+					"height": 23,
+					"path": "icons/dark.png",
+					"scale": [
+						1,
+						2
+					],
+					"theme": [
+						"darkest",
+						"dark",
+						"medium"
+					]
+				},
+				{
+					"width": 23,
+					"height": 23,
+					"path": "icons/light.png",
+					"scale": [
+						1,
+						2
+					],
+					"theme": [
+						"lightest",
+						"light"
+					]
+				}
+			]
+		}
+	],
+	"featureFlags": {
+		"enableAlerts": true
+	},
+	"requiredPermissions": {
+		"localFileSystem": "fullAccess",
+		"launchProcess": {
+			"schemes": [
+				"https",
+				"slack",
+				"file",
+				"ws"
+			],
+			"extensions": [
+				".xd",
+				".psd",
+				".bat",
+				".cmd"
+			]
+		},
+		"network": {
+			"domains": [
+				"https://hyperbrew.co",
+				"https://github.com",
+				"https://vitejs.dev",
+				"https://svelte.dev",
+				"https://reactjs.org",
+				"https://vuejs.org/",
+				"generativelanguage.googleapis.com",
+				"ws://localhost:8080"
+			]
+		},
+		"clipboard": "readAndWrite",
+		"webview": {
+			"allow": "yes",
+			"domains": [
+				"https://*.hyperbrew.co"
+			]
+		},
+		"ipc": {
+			"enablePluginCommunication": true
+		},
+		"allowCodeGenerationFromStrings": true,
+		"enableAddon": true
+	},
+	"addon": {
+		"name": "bolt-uxp-hybrid.uxpaddon"
+	},
+	"icons": [
+		{
+			"width": 48,
+			"height": 48,
+			"path": "icons/plugin-icon.png",
+			"scale": [
+				1,
+				2
+			],
+			"theme": [
+				"darkest",
+				"dark",
+				"medium",
+				"lightest",
+				"light",
+				"all"
+			],
+			"species": [
+				"pluginList"
+			]
+		}
+	]
+}

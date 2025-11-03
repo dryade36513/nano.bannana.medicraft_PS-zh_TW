@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>哞哞Banana生成式填充</title>
+
+    <style>
+        .image-preview-container {
+            position: relative;
+            display: inline-block;
+            margin-top: 10px;
+        }
+        #refImageView {
+            max-width: 120px;
+            max-height: 120px;
+            border-radius: 4px;
+            border: 1px solid var(--spectrum-gray-400);
+        }
+        #removeRefImageBtn {
+            position: absolute;
+            top: -8px;
+            right: -8px;
+        }
+        sp-field-label {
+            font-size: 1.15em;
+            font-weight: 600;
+        }
+        .panel-disabled {
+          pointer-events: none;
+          opacity: 0.5;
+        }
+    </style>
+  <script src="/assets/index-BFeTunDz.js"></script>
+  <link rel="stylesheet" crossorigin href="/assets/index-A0-ETT-y.css">
+</head>
+<body>
+    <div id="root">
+        <div id="apiKeySection">
+            <sp-heading>API 金鑰</sp-heading>
+            <sp-body>請輸入你在Google AI Studio得到的API KEY，沒有請到這 <sp-link href="https://aistudio.google.com/apikey">aistudio.google.com/apikey</sp-link>.</sp-body>
+            <sp-textfield id="apiKeyInput" type="password" placeholder="您的 API 金鑰"></sp-textfield>
+            <sp-button id="saveApiKey">儲存♡</sp-button>
+            <sp-button id="removeApiKey" variant="warning" style="margin-top: 10px;">移除密鑰</sp-button>
+            <sp-button id="backBtn" variant="secondary" style="margin-top: 10px;" class="hidden">回上一步</sp-button>
+        </div>
+
+        <div id="mainPlugin" class="hidden">
+            <div class="header-container">
+                <sp-heading>哞哞Banana生成式填充</sp-heading>
+                <sp-action-button id="settingsBtn" quiet>
+                    <sp-icon size="m" name="ui:InfoMedium"></sp-icon>
+                </sp-action-button>
+            </div>
+            
+            <sp-field-label for="promptInput">提示詞:</sp-field-label>
+            <sp-textarea id="promptInput" placeholder="描述您想要生成的圖像..."></sp-textarea>
+            <sp-checkbox id="ensureBordersCheckbox" checked>確保邊界不變</sp-checkbox>
+
+            <!-- <sp-field-label for="refImage">Reference Image (Optional):</sp-field-label> -->
+            <sp-button id="refImageBtn">選擇圖片</sp-button>
+            <div id="refImageContainer" class="image-preview-container hidden">
+                <img id="refImageView" src="" alt="參考圖片預覽"/>
+                <sp-action-button id="removeRefImageBtn" quiet>
+                    <sp-icon name="ui:CrossSmall" size="s"></sp-icon>
+                </sp-action-button>
+            </div>
+            <sp-body id="refImageName" class="hidden"></sp-body>
+
+
+            <sp-divider size="medium"></sp-divider>
+
+            <sp-field-label>圖層取樣:</sp-field-label>
+            <sp-radio-group id="layerSamplingOptions" selected="visible">
+                <sp-radio value="visible" checked>取樣所有可見圖層</sp-radio>
+                <sp-radio value="selected">僅選取圖層</sp-radio>
+            </sp-radio-group>
+
+            <sp-field-label>輸出選項:</sp-field-label>
+            <sp-radio-group id="outputOptions" selected="newLayer">
+                <sp-radio value="newLayer" checked>插入為新圖層</sp-radio>
+                <sp-radio value="replace">取代原始圖層</sp-radio>
+            </sp-radio-group>
+            
+            <sp-button id="generateBtn" variant="cta">生成</sp-button>
+            
+            <sp-field-label for="featherAmountSlider">羽化數量 (px):</sp-field-label>
+            <div style="display: flex; align-items: center; gap: 10px;">
+                <sp-button id="featherEdgesBtn" style="margin-right: 20px;">羽化邊緣</sp-button>
+                <sp-slider id="featherAmountSlider" min="0" max="250" value="0" style="flex-grow: 1;"></sp-slider>
+                <sp-label id="featherAmountLabel" size="s">0</sp-label>
+            </div>
+
+            <div id="loading" class="hidden">
+                <sp-progress-circle indeterminate></sp-progress-circle>
+                <sp-body>正在生成圖像...</sp-body>
+            </div>
+            <sp-body id="error-message" class="hidden" style="color: red;"></sp-body>
+
+            <sp-divider size="medium"></sp-divider>
+
+        </div>
+            <!-- <sp-field-label for="debugLog">Debug Log:</sp-field-label>
+            <sp-textarea id="debugLog" style="height: 150px;"></sp-textarea> -->
+            <sp-label id="reloadLabel" style="position: absolute; bottom: 10px; right: 10px; font-size: 0.8em; color: var(--spectrum-gray-500); cursor: pointer;">重新載入插件</sp-label>
+    </div>
+        
+
+</body>
+</html>
